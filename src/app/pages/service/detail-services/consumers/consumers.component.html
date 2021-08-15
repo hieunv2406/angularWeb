@@ -1,0 +1,28 @@
+<div style="background: #ededed; padding: 15px">
+    <div class="row mt-3 mb-3" >
+        <div class="pl-2 col-6">
+            <h4 class="pl-2" style="font-weight: bold; font-size: 24px">Eligible Consumers</h4>
+            <p class="pl-2">List of consumers with access, based on ACLs & Auth plugins</p>
+        </div>
+
+        <div class="col-6 row pt-2">
+            <div class="col-1 pt-3 pl-5">
+                <span class="material-icons size">search</span>
+            </div>
+            <div class="col-6">
+                <input class="form-control search-concumers" placeholder="search . . . .">
+            </div>
+
+            <div class="col-2 pt-5">
+                <label>Results: </label>
+            </div>
+            <div class="col-3">
+                <select class="form-control search-concumers" >
+                    <option *ngFor="let x of colours" [value]="x" [selected]="">{{x}}</option>
+
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+

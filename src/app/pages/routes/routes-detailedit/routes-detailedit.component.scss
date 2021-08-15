@@ -1,0 +1,61 @@
+.example-chip-list {
+  width: 100%;
+}
+
+.nav-router {
+  .content-txt{
+    //&.item-3{
+    //  flex-direction: ;
+    //}
+    width: max-content;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    .icon{
+      border-radius: 50%;
+      border: 2px solid black;
+      height: 20px;
+      width: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      i{
+        font-size: 10px;
+        color: black;
+      }
+    }
+    .txt-danger{
+      font-size: .8em;
+    }
+    .icon-out{
+      width: 20px;
+      line-height: unset;
+      font-size: 15px;
+      color: black;
+    }
+    .fa-user{
+      line-height: unset;
+      margin-right: 10px;
+      font-size: 15px;
+      color: black;
+    }
+  }
+
+  mat-selection-list {
+    mat-list-option {
+      &.active {
+        background-color: #1abb9c !important;
+        .content-txt{
+          color: white;
+          .icon{
+            border-color: white;
+          }
+          i{
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}

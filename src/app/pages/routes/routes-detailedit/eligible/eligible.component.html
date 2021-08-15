@@ -1,0 +1,30 @@
+<div class="container-fluid d-flex" style="background-color: #ededed">
+    <div class="col-6 my-5">
+        <h1>Eligible Consumers</h1>
+        <span>List of consumers with access, based on ACLs & Auth plugins</span>
+    </div>
+    <div class="col-6">
+        <!-- Search form -->
+        <form class="form-inline my-5 d-flex justify-content-end">
+            <span class="material-icons ml-5">search</span>
+            <input class="form-control ml-3" type="text" placeholder="Search" aria-label="Search"
+                   mdbInput>
+        </form>
+        <div class="result d-flex justify-content-end flex-row align-items-center">
+            <span class="mx-5">Results :</span>
+            <mat-form-field style="width: 50px">
+                <mat-select>
+                    <mat-option *ngFor="let brand of brands" [value]="brand.value">
+                        {{ brand.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="background-color: #e1edf7">
+    <p class="my-5 py-5" style="color: #2a6496">
+        This route is neither Access Controlled or secured with an Authentication plugin.
+    </p>
+</div>
+

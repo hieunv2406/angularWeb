@@ -1,0 +1,46 @@
+<div class="container-fulid ">
+    <div class="row">
+        <div class="col-md-3">
+            <div>
+                <div class="card-menu-item mb-0 block" [ngClass]="idViewGrid === 'serviceDetail' ? 'is-active' : ''" (click)="setViewGrid('serviceDetail')">
+                   <div class="float-left"> <span class="material-icons">error_outline</span></div>
+                    <label class="pl-2">Service Details</label>
+                </div>
+            </div>
+
+            <div>
+                <div class="card-menu-item mb-0 block" [ngClass]="idViewGrid === 'routes' ? 'is-active' : ''" (click)="setViewGrid('routes')">
+                    <div class="float-left"> <span class="material-icons">alt_route</span></div>
+                    <label class="pl-2" > Routes</label>
+                </div>
+            </div>
+
+            <div>
+                <div class="card-menu-item mb-0 block" [ngClass]="idViewGrid === 'plugins' ? 'is-active' : ''" (click)="setViewGrid('plugins')">
+                    <div class="float-left"> <span class="material-icons">settings_input_hdmi</span></div>
+                    <label class="pl-2" > Plugins</label>
+                </div>
+            </div>
+            <div>
+                <div class="card-menu-item mb-0 block" [ngClass]="idViewGrid === 'consumers' ? 'is-active' : ''" (click)="setViewGrid('consumers')">
+                    <div class="float-left"> <span class="material-icons">group</span></div>
+                    <label class="pl-2" > Eligible consumers <span class="beta">beta</span></label>
+                </div>
+            </div>
+        </div>
+        <div class="col-9">
+            <div *ngIf="idViewGrid === 'serviceDetail'">
+                <kt-detail></kt-detail>
+            </div>
+            <div *ngIf="idViewGrid === 'routes'">
+                <kt-routes></kt-routes>
+            </div>
+            <div *ngIf="idViewGrid === 'plugins'">
+                <kt-plugins></kt-plugins>
+            </div>
+            <div *ngIf="idViewGrid === 'consumers'">
+                <kt-consumers></kt-consumers>
+            </div>
+        </div>
+    </div>
+</div>

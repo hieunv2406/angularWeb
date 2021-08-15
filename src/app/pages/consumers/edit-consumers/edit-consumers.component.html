@@ -1,0 +1,334 @@
+<mat-tab-group class="nav-item" style="background-color: white">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <div class="d-block">
+                <i class="far fa-question-circle fa-2x"></i>
+                <br/>
+                Detail
+            </div>
+        </ng-template>
+        <div class="action-container">
+            <div class="row">
+                <label class="col-4 control-label text-right">
+                    <em>username<br/>
+                        <small class="help-block">(semi-optional)</small>
+                    </em>
+                </label>
+                <div class="col-8">
+                    <input class="form-control input-add">
+                    <p class="help-block">The username of the consumer. You must send either this field or <code>custom_id</code>
+                        with the request.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <label class="col-4 control-label text-right">
+                    <em>custom_id<br/>
+                        <small class="help-block">(semi-optional)</small>
+                    </em>
+                </label>
+                <div class="col-8">
+                    <input class="form-control input-add">
+                    <p class="help-block">Field for storing an existing ID for the consumer, useful for mapping Kong
+                        with users in your existing database. You must send either this field or<code>username</code>
+                        with the request.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <label class="col-4 control-label text-right">
+                    <em>Tags<br/>
+                        <small class="help-block">(optional)</small>
+                    </em>
+                </label>
+                <div class="col-8">
+                    <input class="form-control input-add">
+                    <p class="help-block">Optionally add tags to the consumer</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary"><i class="fas fa-check"></i>SUBMIT CONSUMER</button>
+            </div>
+        </div>
+    </mat-tab>
+
+
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <div class="d-block">
+                <i class="fas fa-user-friends fa-2x"></i>
+                <br/>
+                Groups
+            </div>
+        </ng-template>
+        <div class="row bg-secondary pt-5 pr-3 pb-5 pl-3">
+            <div class="col-6">
+
+            </div>
+            <div class="col-4 row">
+                <div class="col-2 pt-3 pl-10">
+                    <label for="search"><i class="fas fa-search fa-2x"></i></label>
+                </div>
+
+                <div class="col-10">
+                    <input id="search" class="form-control input-search" style="background-color: #E4E6EF !important;"
+                           placeholder="{{'COMMON.SEARCH' | translate}}">
+                </div>
+            </div>
+            <div class="col-2 row">
+                <div class="col-6 mt-3">
+                    <label>{{'COMMON.RESULTS' | translate}}</label>
+                </div>
+                <div class="col-6">
+                    <select class="form-control input-search">
+                        <option *ngFor="let x of colours" [value]="x" [selected]="">{{x}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <mat-form-field class="example-chip-list">
+                <mat-label>Group</mat-label>
+                <mat-chip-list #chipList aria-label="Group selection">
+                    <mat-chip
+                            *ngFor="let group of groups"
+                            [selectable]="selectable"
+                            [removable]="removable"
+                            (removed)="remove(group)">
+                        <i class="fas fa-user-friends"></i>{{group}}
+                        <!--                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>-->
+                        <i matChipRemove class="fas fa-times-circle" *ngIf="removable"></i>
+                    </mat-chip>
+                    <div class="input-group mt-5 row">
+                        <i class="fas fa-user-friends mt-3"></i>
+                        <input
+                                placeholder="New group..."
+                                #groupInput
+                                [formControl]="groupCtrl"
+                                [matAutocomplete]="auto"
+                                [matChipInputFor]="chipList"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                (matChipInputTokenEnd)="add($event)"
+                                [(ngModel)]="newGroup">
+                    </div>
+                </mat-chip-list>
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                    <mat-option *ngFor="let group of filteredGroups | async" [value]="group">
+                        <i class="fas fa-user-friends"></i>{{group}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success"><i class="fas fa-check" (click)="onSubmit()"></i>SUBMIT
+                CONSUMER
+            </button>
+        </div>
+    </mat-tab>
+    <mat-tab>
+
+
+        <ng-template mat-tab-label>
+            <div class="d-block">
+                <i class="fas fa-shield-alt fa-2x"></i>
+                <br/>
+                Credentials
+            </div>
+        </ng-template>
+        <div class="row pt-5">
+            <div class="col-3">
+                <mat-selection-list #shoes [multiple]="false" [(ngModel)]="selectedValue"
+                                    (ngModelChange)="changeModel($event)">
+                    <mat-list-option *ngFor="let item of menu" [value]="item">
+                        {{item}}
+                    </mat-list-option>
+                </mat-selection-list>
+            </div>
+
+            <div class="col-9">
+                <div class="row">
+                    <div class="col-9 row">
+                        <i class="{{classSelect}}"></i>
+                        <h2>{{tileSelect}}</h2>
+                    </div>
+                    <div class="col-3">
+                        <button mat-raised-button class="btn btn-primary text-white" (click)="openDialog()"><i
+                                class="fas fa-plus text-white"></i>
+                            {{contentButton}}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-9">
+                        {{contentSelect}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-tab>
+
+
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <div class="d-block">
+                <i class="fas fa-cloud fa-2x"></i>
+                <br/>
+                Accessible Routes
+            </div>
+        </ng-template>
+
+
+        <div class="row bg-secondary pt-5 pr-3 pb-5 pl-3">
+            <div class="col-6">
+
+            </div>
+            <div class="col-4 row">
+                <div class="col-2 pt-3 pl-10">
+                    <label for="search2"><i class="fas fa-search fa-2x"></i></label>
+                </div>
+
+                <div class="col-10">
+                    <input id="search2" class="form-control input-search" style="background-color: #E4E6EF !important;"
+                           placeholder="{{'COMMON.SEARCH' | translate}}">
+                </div>
+            </div>
+            <div class="col-2 row">
+                <div class="col-6 mt-3">
+                    <label>{{'COMMON.RESULTS' | translate}}</label>
+                </div>
+                <div class="col-6">
+                    <select class="form-control input-search">
+                        <option *ngFor="let x of colours" [value]="x" [selected]="">{{x}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5">
+            <table mat-table [dataSource]="dataSource1" matSort class="mat-elevation-z8 w-100">
+                <!-- Position Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="display: none;"> Name</th>
+                    <td mat-cell *matCellDef="let element">
+
+                            {{element.name_service}}
+                        <br/>
+                            {{element.host}}
+                        <br>
+                            <button class="btn btn-primary">
+                                MORE...<i class="fas fa-angle-down"></i>
+                            </button>
+
+                    </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="scope">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="display: none;"> Scope</th>
+                    <td mat-cell *matCellDef="let element">
+                        Plugin
+                        <i class="fas fa-arrow-right mr-10"></i>
+                        <button class="btn btn-light">
+                            + ADD PLUGIN
+                        </button>
+                    </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="apply">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="display: none;"> Apply to</th>
+                    <td mat-cell *matCellDef="let element">
+                        Routes
+                        <i class="fas fa-arrow-right"></i>
+                    </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="created">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="display: none;"> CREATED</th>
+                                        <td mat-cell *matCellDef="let element" class= "bg-light">
+                                            {{element.name_router}}
+                                            <br>
+                                            {{element.ip}}
+                                            <span class="ml-30">Plugin</span>
+                                            <i class="fas fa-arrow-right"></i>
+                                            <button class="btn btn-light ml-5">
+                                                + ADD PLUGIN
+                                            </button>
+                                            <button class="btn btn-primary float-right">
+                                                MORE...<i class="fas fa-angle-down"></i>
+                                            </button>
+                                        </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+        </div>
+
+
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <div class="d-block">
+                <i class="fas fa-plug fa-2x"></i>
+                <br/>
+                Plugins
+            </div>
+        </ng-template>
+        <div class="">
+            <button mat-button class="btn btn-primary d-flex" (click)="openDialogPlugin()">
+                <span class="material-icons" style="color: white">add</span>
+                <span style="color: white">{{"CONSUMERS.COMMON.CONSUMERS_CREATE" | translate}} </span>
+            </button>
+        </div>
+
+
+        <div class="row bg-secondary pt-5 pr-3 pb-5 pl-3">
+            <div class="col-4 row">
+                <div class="col-2 pt-3 pl-10">
+                    <label for="search3"><i class="fas fa-search fa-2x"></i></label>
+                </div>
+
+                <div class="col-10">
+                    <input id="search3" class="form-control input-search" style="background-color: #E4E6EF !important;"
+                           placeholder="Search plugins...">
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 w-100">
+                <!-- Position Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+                    <td mat-cell *matCellDef="let element">{{element.name}}
+                    </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="scope">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Scope</th>
+                    <td mat-cell *matCellDef="let element"> {{element.scope}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="apply">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Apply to</th>
+                    <td mat-cell *matCellDef="let element"> {{element.apply}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="created">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> CREATED</th>
+                    <td mat-cell *matCellDef="let element"> {{element.created}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+        </div>
+
+    </mat-tab>
+</mat-tab-group>

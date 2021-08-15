@@ -1,0 +1,88 @@
+<div style="background: #ededed">
+    <div class="title" >
+        <h1>Services</h1>
+        <label>Service entities, as the name implies, are abstractions of each of your own upstream services. Examples of Services would be a data transformation microservice, a billing API, etc.</label>
+    </div>
+</div>
+
+<div class="mt-10 row" >
+
+    <div class="col-6">
+        <button mat-button class="btn btn-primary" (click)="addNew()">
+            <span class="material-icons" style="color: white">add</span>
+            <span style="color: white">ADD NEW SERVICE </span>
+        </button>
+    </div>
+
+    <div class="form col-6 row">
+        <div class="col-2 pt-3 pl-25">
+            <span class="material-icons size">search</span>
+        </div>
+        <div class="col-6">
+            <input class="form-control input-search" placeholder="search . . . .">
+        </div>
+
+        <div class="col-2 pt-5">
+            <label>Results: </label>
+        </div>
+        <div class="col-2">
+            <select class="form-control input-search" >
+                <option *ngFor="let x of colours" [value]="x" [selected]="">{{x}}</option>
+
+            </select>
+        </div>
+    </div>
+
+</div>
+
+<table mat-table [dataSource]="dataSource"
+       class="w-100 mt-5"
+       matSort matSortStart="desc">
+    <ng-container matColumnDef="details" >
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element" style="width:7% " >
+            <button mat-icon-button style="color: #445862" >
+                <mat-icon class="mat-18">visibility</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let element" style="width:23% "><a [routerLink]="'/service/detail-services'" >{{element.name}}</a>
+            <tr style="color: #a6a6a6;"> {{element.description}}</tr>
+        </td>
+
+    </ng-container>
+
+    <ng-container matColumnDef="host">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Host </th>
+        <td mat-cell *matCellDef="let element" style="width:20% "> {{element.host}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tags">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tags </th>
+        <td mat-cell *matCellDef="let element" style="width:25% "> {{element.tags}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Created </th>
+        <td mat-cell *matCellDef="let element"> {{element.created | date}} </td>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element" style="width:20%;text-align: right">
+            <button mat-button class="btn w-50" (click)="delete()">
+                <span class="material-icons" style="color: red">delete</span>
+                <span style="color: red; font-weight: bold"> DELETE </span>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 4, 6, 10, 20]"></mat-paginator>

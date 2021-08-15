@@ -1,0 +1,25 @@
+.header{
+  padding: 20px;
+}
+.border-authentication {
+  padding: 1em;
+  border: 2px solid green;
+  background-color: white;
+  text-align: center;
+}
+.body {
+  display: flex;
+  justify-content: space-between;
+}
+.box-plugin{
+  padding: 1em;
+  background-color: white;
+  text-align: center;
+}
+p {
+  margin-bottom: 0px !important;
+}
+.img-plugin{
+  width: 72px;
+  height: 72px
+}

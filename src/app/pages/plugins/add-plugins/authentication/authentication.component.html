@@ -1,0 +1,32 @@
+<div class="link-router-l row">
+    <a class="active" routerLink="../authentication">Authentication</a>
+    <a routerLink="../security">Security</a>
+    <a routerLink="../traffic-Control">Traffic Control</a>
+    <a routerLink="../logging">Logging</a>
+</div>
+
+<div class="header row mt-5">
+    <h3>Authentication</h3>
+    <p style="color: #a6a6a6;">Protect your services with an authentication layer</p>
+</div>
+
+<div class="row justify-content-between">
+    <div class="col-md-3 mt-5 border-authentication">
+        <h3 class="mt-5">Basic Auth</h3>
+        <img class="mt-5 img-plugin" src="assets/media/plugins-image/kong-inc_basic-auth.png">
+        <p class="mt-5">Add Basic Authentication to your APIs</p>
+        <button mat-button class="btn btn-primary mt-10 w-100" (click)="openModalBasicAuth()">ADD PLUGIN</button>
+    </div>
+    <div class="col-md-3 mt-5 border-authentication">
+        <h3 class="mt-5">Key Auth</h3>
+        <img class="mt-5 img-plugin" src="assets/media/plugins-image/kong-inc_key-auth.png" alt="">
+        <p class="mt-5">Add a key authentication to your APIs</p>
+        <button mat-button class="btn btn-primary mt-10 w-100">ADD PLUGIN</button>
+    </div>
+    <div class="col-md-3 mt-5 box-plugin">
+        <h3 class="mt-5">Oauth2</h3>
+        <img class="mt-5 img-plugin" src="assets/media/plugins-image/kong-inc_oauth2.png" alt="">
+        <p class="mt-5">Add an OAuth 2.0 authentication to your APIs</p>
+        <button mat-button class="btn btn-primary mt-10 w-100">ADD PLUGIN</button>
+    </div>
+</div>

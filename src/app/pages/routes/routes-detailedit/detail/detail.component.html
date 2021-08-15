@@ -1,0 +1,310 @@
+<div class="row" style="background-color: #ededed">
+    <h1 class="my-5 ml-5">
+        <i class="fas fa-info-circle" style="color:black;"></i>
+        Route details
+    </h1>
+</div>
+
+<div class="modal-body">
+    <div class="action-container">
+        <div class="container">
+            <div class="justify-content-end flex-grow-1 " style="background-color: #e1edf7;">
+                <p align="right">
+                    * For hosts, paths, methods and protocols, snis, sources,
+                    headers and destinations press enter to apply every value you type
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4 control-label text-right">
+                <em>Name <br/>
+                    <small class="help-block">(optional)</small></em>
+            </label>
+            <div class="col-sm-7">
+                <input class="form-control input-add">
+                <p class="help-block">The name of the Route.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-4 control-label text-right">
+                <em>Tags <br/>
+                    <small class="help-block">(optional)</small></em>
+            </label>
+            <div class="col-sm-7">
+                <input class="form-control input-add">
+                <p class="help-block">Optionally add tags to the route</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-4 control-label text-right">
+                <em>Hosts <br/>
+                    <small class="help-block">(semi-optional)</small></em>
+            </label>
+            <div class="col-sm-7">
+                <input class="form-control input-add">
+                <p class="help-block">A list of domain names that match this Route. For example: example.com. At
+                    least one of hosts, paths, or methods must be set.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-4 control-label text-right">
+                <em>Paths <br/>
+                    <small class="help-block">(semi-optional)</small></em>
+            </label>
+            <div class="col-sm-7">
+                <input class="form-control input-add">
+                <p class="help-block">
+                    A list of paths that match this Route. For example: /my-path. At least one of
+                    <code>hosts</code>, <code>paths</code>, or <code>methods</code> must be set.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-4 control-label text-right">
+                <em>Headers <br/>
+                    <small class="help-block">(semi-optional)</small></em>
+            </label>
+            <div class="col-sm-7">
+                <input class="form-control input-add">
+                <p class="help-block">
+                    One or more lists of values indexed by header name that will cause this Route to match if
+                    present in the request. The <code>Host</code> header cannot be used with this attribute:
+                    <code>hosts</code> should be
+                    specified using the hosts attribute.
+                    <code>Field values format example: x-some-header:foo,bar</code>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-4 control-label text-right">
+                <em>Path handling <br/></em>
+            </label>
+            <div class="col-sm-7">
+                <input class="form-control input-add">
+                <p class="help-block">
+                    Controls how the Service path, Route path and requested path are combined when sending a
+                    request to the upstream. See above for a detailed description of each behavior.
+                    Accepted values are: <code>"v0"</code>, <code>"v1"</code>. Defaults to <code>"v1"</code>.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-4 control-label text-right">
+                <em>Https redirect status code <br/>
+                    <small class="help-block">(optional)</small></em>
+            </label>
+            <div class="col-sm-7">
+                <input type="number" class="form-control input-add">
+                <p class="help-block">
+                    The status code Kong responds with when all properties of a Route match except the protocol,
+                    i.e. if the protocol of the request is <code>HTTP</code>. instead of <code>HTTPS</code>.
+                    <code>Location</code> header is injected by
+                    Kong if the field is set to 301, 302, 307 or 308. Defaults to <code>426</code>.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-4 control-label text-right">
+                <em>Regex priority <br/>
+                    <small class="help-block">(optional)</small></em>
+            </label>
+            <div class="col-sm-7">
+                <input type="number" class="form-control input-add">
+                <p class="help-block">
+                    A number used to choose which route resolves a given request when several routes match it
+                    using regexes simultaneously. When two routes match the path and have the same
+                    <code>regex_priority</code>, the older one (lowest <code>created_at</code>) is used. Note
+                    that the priority for
+                    non-regex routes is different (longer non-regex routes are matched before shorter ones).
+                    Defaults to <code>0</code>.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-4 control-label text-right">
+                <em>Methods <br/>
+                    <small class="help-block">(semi-optional)</small></em>
+            </label>
+            <div class="col-sm-7">
+                <!--                        <input class="form-control input-add">-->
+                <mat-form-field class="example-chip-list">
+                    <mat-chip-list #chipList aria-label="Header selection">
+                        <mat-chip
+                                *ngFor="let head of headers"
+                                [selectable]="selectable"
+                                [removable]="removable"
+                                (removed)="remove(head)">
+                            {{head}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input
+                                placeholder="New fruit..."
+                                #headerInput
+                                [formControl]="headerCtrl"
+                                [matAutocomplete]="auto"
+                                [matChipInputFor]="chipList"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                        <mat-option *ngFor="let head of filteredHeaders | async" [value]="head">
+                            {{head}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <p class="help-block">
+                    A list of HTTP methods that match this Route. At least one of <code>hosts</code>, <code>paths</code>,
+                    or <code>methods</code> must be set.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-4 control-label text-right">
+                <em>Strip Path <br/>
+                    <small class="help-block">(optional)</small></em>
+            </label>
+            <div class="col-sm-7">
+                <label>
+                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="primary">
+                </label>
+                <p class="help-block">
+                    When matching a Route via one of the <code>paths</code>, strip the matching prefix from the
+                    upstream request URL.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-4 control-label text-right">
+                <em>Preserve Host <br/>
+                    <small class="help-block">(optional)</small></em>
+            </label>
+            <div class="col-sm-7">
+                <label>
+                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="primary">
+                </label>
+                <p class="help-block">
+                    When matching a Route via one of the <code>hosts</code> domain names, use the request
+                    <code>Host</code>
+                    header in the
+                    upstream request headers. By default set to <code>false</code>, and the upstream Host header
+                    will be that
+                    of the Service's host
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-4 control-label text-right">
+                <em>Protocols<br/>
+                    <small class="help-block">(semi-optional)</small></em>
+            </label>
+            <div class="col-sm-7">
+                <mat-form-field class="example-chip-list">
+                    <mat-chip-list #chipList aria-label="Fruit selection">
+                        <mat-chip
+                                *ngFor="let head of headers"
+                                [selectable]="selectable"
+                                [removable]="removable"
+                                (removed)="remove(head)">
+                            {{head}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input
+                                placeholder="New fruit..."
+                                #headerInput
+                                [formControl]="headerCtrl"
+                                [matAutocomplete]="auto"
+                                [matChipInputFor]="chipList"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                        <mat-option *ngFor="let head of filteredHeaders | async" [value]="head">
+                            {{head}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <p class="help-block">
+                    A list of the protocols this Route should allow. By default it is <code>["http",
+                    "https"]</code>, which
+                    means that the Route accepts both. When set to <code>["https"]</code>, HTTP requests are
+                    answered with a
+                    request to upgrade to HTTPS.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-4 control-label text-right">
+                <em>SNIs<br/>
+                    <small class="help-block">(semi-optional)</small></em>
+            </label>
+            <div class="col-sm-7">
+                <input class="form-control input-add">
+                <p class="help-block">
+                    A list of SNIs that match this Route when using stream routing. When using <code>tcp</code>
+                    or <code>tls</code>
+                    protocols, at least one of <code>snis</code>, <code>sources</code>, or
+                    <code>destinations</code> must be set.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-4 control-label text-right">
+                <em>Sources<br/>
+                    <small class="help-block">(semi-optional)</small></em>
+            </label>
+            <div class="col-sm-7">
+                <input class="form-control input-add">
+                <p class="help-block">
+                    A list of IP sources of incoming connections that match this Route when using stream
+                    routing. Each entry is an object with fields “ip” (optionally in CIDR range notation) and/or
+                    “port”. When using <code>tcp</code> or <code>tls</code> protocols, at least one of <code>snis</code>,
+                    sources, or <code>destinations</code> must
+                    be set.
+                    <code>The field expects values with ip:port format. ex: 192.168.1.2:3000</code>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-4 control-label text-right">
+                <em>Destinations<br/>
+                    <small class="help-block">(semi-optional)</small></em>
+            </label>
+            <div class="col-sm-7">
+                <input class="form-control input-add">
+                <p class="help-block">
+                    A list of IP destinations of incoming connections that match this Route when using stream
+                    routing. Each entry is an object with fields “ip” (optionally in CIDR range notation) and/or
+                    “port”. When using <code>tcp</code> or <code>tls</code> protocols, at least one of snis,
+                    <code>sources</code>, or <code>destinations</code> must
+                    be set.
+                    <code>The field expects values with ip:port format. ex: 192.168.1.2:3000</code>
+                </p>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <label class="col-sm-4 control-label text-right"></label>
+            <div class="col-sm-7">
+                <button mat-button class="btn btn-primary w-100" (click)="save()">
+                    <span class="material-icons" style="color: white">done</span>
+                    <span style="color: white"> SUBMIT CHANGES </span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+

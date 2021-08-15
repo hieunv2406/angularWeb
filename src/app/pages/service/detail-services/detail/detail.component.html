@@ -1,0 +1,163 @@
+<div class="" style="background: #ededed; padding: 15px">
+    <div class="d-flex mt-3 mb-3" >
+        <div class="mt-1"> <span style="font-size: 24px!important;" class="material-icons">error_outline</span></div>
+        <div class="pl-2">
+            <h4 class="pl-2" style="font-weight: bold; font-size: 24px">Service details</h4>
+        </div>
+    </div>
+</div>
+
+<div class="action-container mt-5">
+    <div class="row">
+        <label class="col-sm-4 control-label text-right">
+            <em>Name <br/>
+                <small class="help-block">(optional)</small></em>
+        </label>
+        <div class="col-sm-7">
+            <input class="form-control input-search">
+            <p class="help-block">The service name</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-sm-4 control-label text-right">
+            <em>Description <br/>
+                <small class="help-block">(optional)</small></em>
+        </label>
+        <div class="col-sm-7">
+            <input class="form-control input-search">
+            <p class="help-block">An optional service description.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-sm-4 control-label text-right">
+            <em>Tags <br/>
+                <small class="help-block">(optional)</small></em>
+        </label>
+        <div class="col-sm-7">
+            <input class="form-control input-search">
+            <p class="help-block">Optionally add tags to the service</p>
+        </div>
+    </div>
+
+<!--    <div class="row">-->
+<!--        <label class="col-sm-4 control-label text-right">-->
+<!--            <em>Url <br/>-->
+<!--                <small class="help-block">(shorthand-attribute)</small></em>-->
+<!--        </label>-->
+<!--        <div class="col-sm-7">-->
+<!--            <input class="form-control input-search">-->
+<!--            <p class="help-block">Shorthand attribute to set <code>protocol</code>,<code>host</code>,<code>port</code>,<code>path</code> at once. This attribute is write-only (the Admin API never "returns" the url).</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <div class="row">
+        <label class="col-sm-4 control-label text-right">
+            <em>Protocol <br/>
+                <small class="help-block">(semi-optional)</small></em>
+        </label>
+        <div class="col-sm-7">
+            <input class="form-control input-search">
+            <p class="help-block">The protocol used to communicate with the upstream. It can be one of <code>http</code> or <code>https</code>.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-sm-4 control-label text-right">
+            <em>Host <br/>
+                <small class="help-block">(semi-optional)</small></em>
+        </label>
+        <div class="col-sm-7">
+            <input class="form-control input-search">
+            <p class="help-block">The host of the upstream server.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-sm-4 control-label text-right">
+            <em>Port <br/>
+                <small class="help-block">(semi-optional)</small></em>
+        </label>
+        <div class="col-sm-7">
+            <input class="form-control input-search">
+            <p class="help-block">The upstream server port. Defaults to <code>80</code>.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-sm-4 control-label text-right">
+            <em>Path <br/>
+                <small class="help-block">(optional)</small></em>
+        </label>
+        <div class="col-sm-7">
+            <input class="form-control input-search">
+            <p class="help-block">The path to be used in requests to the upstream server. Empty by default.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-sm-4 control-label text-right">
+            <em>Retries <br/>
+                <small class="help-block">(optional)</small></em>
+        </label>
+        <div class="col-sm-7">
+            <input type="number"  class="form-control input-search">
+            <p class="help-block">The number of retries to execute upon failure to proxy. The default is <code>5</code>.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-sm-4 control-label text-right">
+            <em>Connect timeout <br/>
+                <small class="help-block">(optional)</small></em>
+        </label>
+        <div class="col-sm-7">
+            <input type="number" class="form-control input-search">
+            <p class="help-block">The timeout in milliseconds for establishing a connection to your upstream server. Defaults to <code>60000</code></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-sm-4 control-label text-right">
+            <em>Write timeout <br/>
+                <small class="help-block">(optional)</small></em>
+        </label>
+        <div class="col-sm-7">
+            <input type="number" class="form-control input-search">
+            <p class="help-block">The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server. Defaults to <code>60000</code></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-sm-4 control-label text-right">
+            <em>Read timeout <br/>
+                <small class="help-block">(optional)</small></em>
+        </label>
+        <div class="col-sm-7">
+            <input type="number" value="60000" class="form-control input-search">
+            <p class="help-block">The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server. Defaults to <code>60000</code></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-sm-4 control-label text-right">
+            <em>Client certificate <br/>
+                <small class="help-block">(optional)</small></em>
+        </label>
+        <div class="col-sm-7">
+            <input class="form-control input-search">
+            <p class="help-block">Certificate (<code>id</code>) to be used as client certificate while TLS handshaking to the upstream server.</p>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <label class="col-sm-4 control-label text-right"></label>
+        <div class="col-sm-7">
+            <button mat-button class="btn btn-primary w-100" (click)="save()">
+                <span class="material-icons" style="color: white">done</span>
+                <span style="color: white"> SUBMIT SERVICE </span>
+            </button>
+        </div>
+    </div>
+
+</div>

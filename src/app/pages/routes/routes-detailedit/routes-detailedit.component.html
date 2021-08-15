@@ -1,0 +1,44 @@
+<div class="container-fluid" style="background-color: #ededed;" xmlns="http://www.w3.org/1999/html">
+    <h1>Route rute_test </h1>
+    <p>
+        <a [routerLink]="'/routes'">routes </a>
+        <span>/  routes</span>
+    </p>
+</div>
+<div class="row pt-5 nav-router">
+    <div class="col-3">
+        <mat-selection-list [multiple]="false" [(ngModel)]="selectedValue"
+                            (ngModelChange)="changeModel($event)">
+            <mat-list-option [value]="1"
+                             routerLink="/routes/router-detail/detail"
+                             routerLinkActive="active">
+                <div class="content-txt">
+                    <span class="ml-2">Route details</span>
+                    <div class="icon">
+                        <i class="fas fa-info"></i>
+                    </div>
+                </div>
+            </mat-list-option>
+            <mat-list-option [value]="2"
+                             routerLink="/routes/router-detail/plugins"
+                             routerLinkActive="active">
+                <div class="content-txt">
+                    <span class="ml-2">Plugins</span>
+                    <i class="icon-out d-flex justify-content-center fas fa-plug"></i>
+                </div>
+            </mat-list-option>
+            <mat-list-option [value]="3"
+                             routerLink="/routes/router-detail/eligible-consumers"
+                             routerLinkActive="active">
+                <div class="content-txt d-flex align-items-center">
+                    <span class="txt-danger rounded text-white bg-danger ml-1 px-1 py-0 d-table">beta</span>
+                    <span class="ml-2">Eligible Consumers</span>
+                    <i class="icon-out d-flex justify-content-center fas fa-user-friends"></i>
+                </div>
+            </mat-list-option>
+        </mat-selection-list>
+    </div>
+    <div class="col-9">
+        <router-outlet></router-outlet>
+    </div>
+</div>

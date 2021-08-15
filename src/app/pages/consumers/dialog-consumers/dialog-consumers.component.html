@@ -1,0 +1,407 @@
+<div *ngIf="title === 'CREATE CONSUMER'">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title text-success">{{title}}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDialog()">
+                <i class="fas fa-times" style="font-size: large"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="action-container">
+                <div class="row">
+                    <label class="col-4 control-label text-right">
+                        <em>username<br/>
+                            <small class="help-block">(semi-optional)</small>
+                        </em>
+                    </label>
+                    <div class="col-8">
+                        <input class="form-control input-add">
+                        <p class="help-block">The username of the consumer. You must send either this field or <code>custom_id</code>
+                            with the request.</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label class="col-4 control-label text-right">
+                        <em>custom_id<br/>
+                            <small class="help-block">(semi-optional)</small>
+                        </em>
+                    </label>
+                    <div class="col-8">
+                        <input class="form-control input-add">
+                        <p class="help-block">Field for storing an existing ID for the consumer, useful for mapping Kong
+                            with users in your existing database. You must send either this field
+                            or<code>username</code> with the request.</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label class="col-4 control-label text-right">
+                        <em>Tags<br/>
+                            <small class="help-block">(optional)</small>
+                        </em>
+                    </label>
+                    <div class="col-8">
+                        <input class="form-control input-add">
+                        <p class="help-block">Optionally add tags to the consumer</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary"><i class="fas fa-check"></i>SUBMIT CONSUMER</button>
+        </div>
+
+    </div>
+</div>
+<div *ngIf="title === 'DELETE CONSUMER'">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title text-success">{{title}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDialog()">
+                <i class="fas fa-times" style="font-size: large"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            Really want to delete the selected item?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeDialog()">NO DON'T
+            </button>
+            <button type="button" class="btn btn-success"><i class="fas fa-check"></i>YES! DELETE IT</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="title === 'DETAIL CONSUMER'">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title text-success">{{title}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDialog()">
+                <i class="fas fa-times" style="font-size: large"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+        </div>
+        <!--        <div class="modal-footer">-->
+        <!--            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeDialog()">NO DON'T</button>-->
+        <!--            <button type="button" class="btn btn-success"><i class="fas fa-check"></i>YES! DELETE IT</button>-->
+        <!--        </div>-->
+    </div>
+</div>
+
+<div *ngIf="title === 'BASIC'">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title text-success">{{title}} AUTH</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDialog()">
+                <i class="fas fa-times" style="font-size: large"></i>
+            </button>
+        </div>
+        <div class="bg-secondary help-block pt-5 pb-5 padding-custom">Manage Basic Auth credentials for <span
+                class="text-success">21312312</span></div>
+        <div class="modal-body">
+            <div class="action-container">
+                <div class="row">
+                    <label class="col-4 control-label text-right">
+                        <em>username<br/>
+                            <small class="help-block">(required)</small>
+                        </em>
+                    </label>
+                    <div class="col-8">
+                        <input class="form-control input-add">
+                        <p class="help-block">The username to use in the Basic Authentication</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-4 control-label text-right">
+                        <em>password<br/>
+                            <small class="help-block">(optional)</small>
+                        </em>
+                    </label>
+                    <div class="col-8">
+                        <input class="form-control input-add">
+                        <p class="help-block">The password to use in the Basic Authentication</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <!--            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeDialog()">NO DON'T</button>-->
+            <button type="button" class="btn btn-primary"><i class="fas fa-check"></i>SUBMIT</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="title === 'API KEYS'">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title text-success">{{title}}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDialog()">
+                <i class="fas fa-times" style="font-size: large"></i>
+            </button>
+        </div>
+        <div class="bg-secondary help-block pt-5 pb-5 padding-custom">Create Api Key for <span class="text-success">21312312</span>
+        </div>
+        <div class="modal-body">
+            <div class="action-container">
+                <div class="row">
+                    <label class="col-4 control-label text-right">
+                        <em>key<br/>
+                            <small class="help-block">(optional)</small>
+                        </em>
+                    </label>
+                    <div class="col-8">
+                        <input class="form-control input-add">
+                        <p class="help-block">You can optionally set your own unique key to authenticate the client. If
+                            missing, Kong will generate one.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <!--            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeDialog()">NO DON'T</button>-->
+            <button type="button" class="btn btn-success"><i class="fas fa-check"></i>SUBMIT</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="title === 'HMAC'">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title text-success">{{title}}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDialog()">
+                <i class="fas fa-times" style="font-size: large"></i>
+            </button>
+        </div>
+        <div class="bg-secondary help-block pt-5 pb-5 padding-custom">Create HMAC credentials for <span
+                class="text-success">21312312</span></div>
+        <div class="modal-body">
+            <div class="action-container">
+                <div class="row">
+                    <label class="col-4 control-label text-right">
+                        <em>username<br/>
+                            <small class="help-block">(required)</small>
+                        </em>
+                    </label>
+                    <div class="col-8">
+                        <input class="form-control input-add">
+                        <p class="help-block">The username to use in the HMAC Signature verification</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-4 control-label text-right">
+                        <em>secret<br/>
+                            <small class="help-block">(optional)</small>
+                        </em>
+                    </label>
+                    <div class="col-8">
+                        <input class="form-control input-add">
+                        <p class="help-block">The secret to use in the HMAC Signature verification</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <!--            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeDialog()">NO DON'T</button>-->
+            <button type="button" class="btn btn-success"><i class="fas fa-check"></i>SUBMIT</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="title === 'OAUTH2'">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title text-success"> CREATE {{title}}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDialog()">
+                <i class="fas fa-times" style="font-size: large"></i>
+            </button>
+        </div>
+        <div class="bg-secondary help-block pt-5 pb-5 padding-custom">Create OAuth2 for <span
+                class="text-success">21312312</span></div>
+        <div class="modal-body">
+            <div class="action-container">
+                <div class="row">
+                    <label class="col-4 control-label text-right">
+                        <em>name<br/>
+                            <small class="help-block">(required)</small>
+                        </em>
+                    </label>
+                    <div class="col-8">
+                        <input class="form-control input-add">
+                        <p class="help-block">The name to associate to the credential. In OAuth 2.0 this would be the application name.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-4 control-label text-right">
+                        <em>client_id<br/>
+                            <small class="help-block">(optional)</small>
+                        </em>
+                    </label>
+                    <div class="col-8">
+                        <input class="form-control input-add">
+                        <p class="help-block">You can optionally set your own unique <code> client_id</code> client_id. If missing, the plugin will generate one.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-4 control-label text-right">
+                        <em>client_secret<br/>
+                            <small class="help-block">(optional)</small>
+                        </em>
+                    </label>
+                    <div class="col-8">
+                        <input class="form-control input-add">
+                        <p class="help-block">You can optionally set your own unique <code>client_secret</code>. If missing, the plugin will generate one.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-4 control-label text-right">
+                        <em>redirect_uris<br/>
+                            <small class="help-block">(required)</small>
+                        </em>
+                    </label>
+                    <div class="col-8">
+                        <input class="form-control input-add">
+                        <p class="help-block">Press enter to apply every value you type</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-4 control-label text-right">
+                    </label>
+                    <div class="col-8">
+                        <p class="help-block">The URL in your app where users will be sent after authorization (<a href="https://tools.ietf.org/html/rfc6749#section-3.1.2">RFC 6742 Section 3.1.2</a>)</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <!--            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeDialog()">NO DON'T</button>-->
+            <button type="button" class="btn btn-success"><i class="fas fa-check"></i>SUBMIT</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="title === 'JWT'">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title"> CREATE {{title}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDialog()">
+                <i class="fas fa-times" style="font-size: large"></i>
+            </button>
+        </div>
+<!--        <div class="modal-body">-->
+<!--            <div class="bg-secondary">Create HMAC credentials for 21312312</div>-->
+<!--            <div class="row mt-5">-->
+<!--                <div class="col-3 pt-3 text-right">-->
+<!--                    <span>key</span>-->
+<!--                    <div class="">(optional)</div>-->
+<!--                </div>-->
+<!--                <div class="col-9">-->
+<!--                    <input type="text" class="form-control">-->
+<!--                    A unique string identifying the credential. If left out, it will be auto-generated. However,-->
+<!--                    usage-->
+<!--                    of this key is mandatory while crafting your token, as specified in the next section.-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row mt-5">-->
+<!--                <div class="col-3 pt-3 text-right">-->
+<!--                    <span>algorithm</span>-->
+<!--                    <div class="">(optional)</div>-->
+<!--                </div>-->
+<!--                <div class="col-9">-->
+<!--                    <input type="text" class="form-control">-->
+<!--                    The algorithm used to verify the token's signature. Can be HS256 or RS256.-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row mt-5">-->
+<!--                <div class="col-3 pt-3 text-right">-->
+<!--                    <span>rsa_public_key</span>-->
+<!--                    <div class="">(optional)</div>-->
+<!--                </div>-->
+<!--                <div class="col-9">-->
+<!--                    <input type="text" class="form-control">-->
+<!--                    If algorithm is RS256, the public key (in PEM format) to use to verify the token's signature.-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="row mt-5">-->
+<!--                <div class="col-3 pt-3 text-right">-->
+<!--                    <span>secret</span>-->
+<!--                    <div class="">(optional)</div>-->
+<!--                </div>-->
+<!--                <div class="col-9">-->
+<!--                    <input type="text" class="form-control">-->
+<!--                    If algorithm is HS256, the secret used to sign JWTs for this credential. If left out, will be-->
+<!--                    auto-generated. If algorithm is RS256, this is the private key (in PEM format) to use to verify-->
+<!--                    the-->
+<!--                    token's signature.-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+        <div class="bg-secondary help-block pt-5 pb-5 padding-custom">Create JWT for <span
+                class="text-success">21312312</span></div>
+        <div class="modal-body">
+            <div class="action-container">
+                <div class="row">
+                    <label class="col-4 control-label text-right">
+                        <em>key<br/>
+                            <small class="help-block">(optional)</small>
+                        </em>
+                    </label>
+                    <div class="col-8">
+                        <input class="form-control input-add">
+                        <p class="help-block">A unique string identifying the credential. If left out, it will be auto-generated. However, usage of this key is mandatory while crafting your token, as specified in the next section.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-4 control-label text-right">
+                        <em>algorithm<br/>
+                            <small class="help-block">(optional)</small>
+                        </em>
+                    </label>
+                    <div class="col-8">
+                        <select class="form-control input-search">
+                            <option *ngFor="let x of colours" [value]="x" [selected]="">{{x}}</option>
+                        </select>
+                        <p class="help-block">The algorithm used to verify the token's signature. Can be <code>HS256</code> or <code>RS256</code>.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-4 control-label text-right">
+                        <em>rsa_public_key<br/>
+                            <small class="help-block">(optional)</small>
+                        </em>
+                    </label>
+                    <div class="col-8">
+                        <input class="form-control input-add">
+                        <p class="help-block">If <code>algorithm</code> is <code>RS256</code>, the public key (in PEM format) to use to verify the token's signature.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-4 control-label text-right">
+                        <em>secret<br/>
+                            <small class="help-block">(optional)</small>
+                        </em>
+                    </label>
+                    <div class="col-8">
+                        <input class="form-control input-add">
+                        <p class="help-block">If <code>algorithm</code> is <code>HS256</code>, the secret used to sign JWTs for this credential. If left out, will be auto-generated. If algorithm is RS256, this is the private key (in PEM format) to use to verify the token's signature.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal-footer">
+            <!--            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeDialog()">NO DON'T</button>-->
+            <button type="button" class="btn btn-success"><i class="fas fa-check"></i>SUBMIT</button>
+        </div>
+    </div>
+</div>
+
+

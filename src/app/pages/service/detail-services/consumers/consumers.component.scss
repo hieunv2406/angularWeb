@@ -1,0 +1,22 @@
+.search-concumers{
+  background: #ededed !important;
+  border-bottom: 1px solid #bbb;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: unset;
+  padding-bottom: 0 !important;
+  .form-control{
+    padding-bottom: 2px;
+  }
+
+  &:focus {
+    background: #ededed !important;
+    border-bottom: 2px solid #1abb9c !important;
+  }
+
+  &:active {
+    background: #ededed !important;
+    border-bottom: 2px solid #1abb9c !important;
+  }
+}

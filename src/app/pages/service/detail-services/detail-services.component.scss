@@ -1,0 +1,39 @@
+.block-menu{
+  margin: 3px;
+  border: 1px solid #AABFD4;
+}
+
+.card-menu-item{
+  color: #5a738e;
+  background: #EEF0F8 !important;
+  display: block;
+  font-size: 14px;
+  font-family: Montserrat-Light, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border-radius: 3px;
+  padding: 10px 15px;
+}
+.card-menu-item:hover{
+  background: #EDEDED !important;
+  color: #5a738e!important;
+}
+.card-menu-item.is-active:hover{
+  background: #1abb9c !important;
+  color: white!important;
+}
+.card-menu-item:visited{
+  background: #1abb9c !important;
+  color: white !important;
+}
+
+.is-active{
+  background: #1abb9c !important;
+  color: white !important;
+}
+
+.beta{
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #f9f2f4;
+  background-color: #f7464a;
+  border-radius: 3px;
+}

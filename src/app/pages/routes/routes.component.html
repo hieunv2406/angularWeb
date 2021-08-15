@@ -1,0 +1,141 @@
+<div class="row" style="background-color: #ededed">
+    <h1 class="ml-5">Routes</h1>
+    <p class="ml-5">
+        The Route entities defines rules to match client requests. Each Route is associated with a Service, and a
+        Service may have multiple Routes associated to it.
+        Every request matching a given Route will be proxied to its associated Service.
+    </p>
+</div>
+
+<div class="container-fluid d-flex my-8">
+    <a class="btn btn-link " href="#" target="_blank">YOU CAN ONLY CREATE ROUTES FROM SERVICE PAGE</a>
+    <div class="row d-flex justify-content-end flex-grow-1">
+        <!-- Search form -->
+        <form class="form-inline">
+            <span class="material-icons">search</span>
+            <input class="form-control ml-3" type="text" placeholder="Search" aria-label="Search"
+                   mdbInput>
+        </form>
+        <div class="result d-flex justify-content-end flex-row align-items-center">
+            <span class="mx-5">Results :</span>
+            <mat-form-field style="width: 50px">
+                <mat-select>
+                    <mat-option *ngFor="let brand of brands" [value]="brand.value">
+                        {{ brand.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <!--Strip Path Column-->
+        <ng-container matColumnDef="stripPath">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let element">
+                <i class="fas fa-unlink"></i>
+                {{element.stripPath}}
+            </td>
+        </ng-container>
+        <!--Preserve Host Clolumn-->
+        <ng-container matColumnDef="preserveHost">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let element">
+                <span class="material-icons">
+                cloud_off
+                </span>
+                {{element.preserveHost}}
+            </td>
+        </ng-container>
+        <!--Raw View Column-->
+        <ng-container matColumnDef="rawView">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let element">
+                <i class="fas fa-eye"></i>
+                {{element.rawView}}
+            </td>
+        </ng-container>
+        <!-- Name/id Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME/ID</th>
+            <td mat-cell *matCellDef="let element"><a [routerLink]="'./routes/routes-detailedit'">{{element.name}}</a></td>
+        </ng-container>
+
+        <!-- Tags Column -->
+        <ng-container matColumnDef="tags">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> TAGS</th>
+            <td mat-cell *matCellDef="let element"> {{element.tags}} </td>
+        </ng-container>
+
+        <!-- Hosts Column -->
+        <ng-container matColumnDef="hosts">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> HOSTS</th>
+            <td mat-cell *matCellDef="let element"> {{element.hosts}} </td>
+        </ng-container>
+
+        <!-- Service Column -->
+        <ng-container matColumnDef="service">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> SERVICE</th>
+            <td mat-cell *matCellDef="let element"> <a [routerLink]="'./routes/service'">{{element.service}}</a> </td>
+        </ng-container>
+        <!-- Paths Column -->
+        <ng-container matColumnDef="paths">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> PATHS</th>
+            <td mat-cell *matCellDef="let element"> {{element.paths}} </td>
+        </ng-container>
+        <!-- Created Column -->
+        <ng-container matColumnDef="created">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> CREATED</th>
+            <td mat-cell *matCellDef="let element"> {{element.created}} </td>
+        </ng-container>
+        <!--- Edit Column -->
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button>
+                    <i class="fas fa-pen" style="color: gold"></i>
+                    <a [routerLink]="'/routes/router-detail'">EDIT</a>
+                </button>
+            </td>
+        </ng-container>
+        <!-- Delete Column -->
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="openDialogDelete(content)">
+                    <i class="fas fa-trash-alt" style="color: red"></i>
+                    Delete
+                </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+<!--POPUP DELETE-->
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header" style="padding: 10px !important;">
+        <h4 class="modal-title" id="modal-basic-title">Xóa Routes</h4>
+        <button kendoButton type="button" (click)="d('Cross click')" Class="fas fa-times">
+        </button>
+    </div>
+    <div class="modal-body" style="!important;">
+        <p style="align-items: center">Really want to delete the selected item?</p>
+    </div>
+    <div class="modal-footer" style="padding: 10px !important;">
+        <form action="">
+            <button type="button" class="btn btn-secondary mr-3" (click)="d('Cross click')">NO DON'T</button>
+            <button type="button" class="btn  btn-primary "
+                    (click)="delete()" [disabled]="disableDelete" id="focusDelete">YES! DELETE IT
+            </button>
+        </form>
+    </div>
+    <div class="custom-loading-h">
+    </div>
+</ng-template>
+
+
